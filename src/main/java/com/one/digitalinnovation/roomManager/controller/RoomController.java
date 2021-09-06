@@ -1,2 +1,9 @@
-package com.one.digitalinnovation.roomManager.controller;public class RoomController {
+package com.one.digitalinnovation.roomManager.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping()
+public class RoomController {
 }

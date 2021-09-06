@@ -1,4 +1,4 @@
 package com.one.digitalinnovation.roomManager.exception;
 
-public class GlobalException {
+public class GlobalExceptionHandler {
 }
