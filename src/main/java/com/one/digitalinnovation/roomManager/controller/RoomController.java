@@ -36,4 +36,12 @@ public class RoomController {
         Room savedRoom = roomRepository.save(room);
         return savedRoom;
     }
+
+    @PutMapping("/rooms/{id}")
+    public ResponseEntity<Room> updateRoom(@Valid @RequestBody Room room, @PathVariable Long id) throws ResourceNotFoundException {
+        roomRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Room not found: " + id));
+
+        Room savedRoom = roomRepository.save(room);
+        return ResponseEntity.ok().body(room);
+    }
 }
