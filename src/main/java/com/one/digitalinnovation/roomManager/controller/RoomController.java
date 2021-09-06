@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -43,5 +45,15 @@ public class RoomController {
 
         Room savedRoom = roomRepository.save(room);
         return ResponseEntity.ok().body(room);
+    }
+
+    @DeleteMapping("/rooms;{id}")
+    public Map<String, Boolean> deleteRoom(@PathVariable Long id) throws ResourceNotFoundException{
+        Room room = roomRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Room not found: " + id));
+        roomRepository.delete(room);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
     }
 }
